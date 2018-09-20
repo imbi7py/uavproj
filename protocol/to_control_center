@@ -1,0 +1,27 @@
+//任务规划软件与控制中心的通信协议
+
+//以下内容又任务规划软件收到应用方请求后发给控制中心
+
+Flying_Missions_Request:
+{
+    'request_name':'request_at_20180920',//任务请求名
+    'mission_num':1,//任务数量
+    'missions':[Flying_Mission, Flying_Mission],//多个任务的list,每个任务
+}
+
+Flying_Mission
+{
+    'name':'test_mission', //任务名
+    'mission_type': MissionType, //任务类型(洪涝 or 反恐 or 生态),枚举型
+    'mission_area':[(x1,y1),(x2,y2)...], //要求任务区域:list类型表示的多边形,代表任务区域
+    'platform': Platform, //要求平台:枚举类型
+    'camera': Camera, //要求相机(载荷):枚举类型
+    'begin_time': Unix_time, //任务开始时间, 0即立即开始
+    
+    'flying_height': [min_height, max_height], //飞行高度
+    'flying_speed': [min_speed, max_speed], //飞行速度
+    'shooting_space_seconds': [min_space, max_space], //拍摄间隔
+    'track': [(x1,y1),(x2,y2)...], //航迹
+
+    'origin_app_mission_request': str, //原始的由应用方发来的任务要求,用于debug
+}
